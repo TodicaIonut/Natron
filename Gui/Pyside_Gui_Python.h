@@ -34,13 +34,13 @@
 #ifdef SBK2_RUN
 #include <pyside2_global.h>
 #else
-#include <pyside_global.h>
+#include <pyside6_global.h>
 #endif
 
 #include <QSize>
 #include <QObject>
 
-#include <QtGui/qpytextobject.h>
+#include <qpytextobject.h>
 
 //Global
 #include <GlobalDefines.h>

@@ -1,6 +1,6 @@
 /* ***** BEGIN LICENSE BLOCK *****
  * This file is part of Natron <https://natrongithub.github.io/>,
- * (C) 2018-2023 The Natron developers
+ * (C) 2018-2024 The Natron developers
  * (C) 2013-2018 INRIA and Alexandre Gauthier-Foichat
  *
  * Natron is free software: you can redistribute it and/or modify
@@ -16,38 +16,24 @@
  * You should have received a copy of the GNU General Public License
  * along with Natron.  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>
  * ***** END LICENSE BLOCK ***** */
-#ifndef NATRON_GLOBAL_QTCOMPAT_H
-#define NATRON_GLOBAL_QTCOMPAT_H
 
-#include "Global/Macros.h"
 
-#include <QtGlobal> // for Q_OS_*
-#include <QString>
-#include <QUrl>
-#include <QFileInfo>
+#ifndef PYSIDE6_ENGINE_PYTHON_H
+#define PYSIDE6_ENGINE_PYTHON_H
 
-NATRON_NAMESPACE_ENTER
+// Defined for shiboken6-specific tweaks
+#define SBK6_RUN
 
-namespace QtCompat {
-/*Removes the . and the extension from the filename and also
- * returns the extension as a string.*/
-inline QString
-removeFileExtension(QString & filename)
-{
-    //qDebug() << "remove file ext from" << filename;
-    QFileInfo fi(filename);
-    QString extension = fi.suffix();
+#ifndef BOOST_SERIALIZATION_VERSION_HPP
+#define BOOST_SERIALIZATION_VERSION_HPP
+#define BOOST_CLASS_VERSION(T, N)
+#endif /* BOOST_SERIALIZATION_VERSION_HPP */
 
-    if ( !extension.isEmpty() ) {
-        filename.truncate(filename.size() - extension.size() - 1);
-    }
+#ifndef BOOST_SERIALIZATION_SPLIT_MEMBER_HPP
+#define BOOST_SERIALIZATION_SPLIT_MEMBER_HPP
+#define BOOST_SERIALIZATION_SPLIT_MEMBER()
+#endif /* BOOST_SERIALIZATION_SPLIT_MEMBER_HPP */
 
-    //qDebug() << "->" << filename << fi.suffix();
-    return extension;
-}
+#include "Pyside_Engine_Python.h"
 
-} // namespace QtCompat
-
-NATRON_NAMESPACE_EXIT
-
-#endif // NATRON_GLOBAL_QTCOMPAT_H
+#endif // PYSIDE6_ENGINE_PYTHON_H
